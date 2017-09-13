@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <app-lists-users></app-lists-users>
+<div class="container pt-3">
+  <app-search-form (myEvent)="profile.updateUser($event)"></app-search-form>
+  <app-lists-users #profile></app-lists-users>
 </div>

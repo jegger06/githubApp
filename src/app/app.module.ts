@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // Module Imports
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Component Imports
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -23,7 +24,9 @@ import { GithubService } from './services/github.service';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [GithubService],
   bootstrap: [AppComponent]
