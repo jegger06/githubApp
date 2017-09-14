@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Router Import
 import { RouterModule, Routes } from '@angular/router';
 // Module Imports
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule
   ],
   providers: [GithubService],
   bootstrap: [AppComponent]

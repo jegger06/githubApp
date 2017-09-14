@@ -1,12 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { GithubService } from '../../services/github.service';
+import { routeFadeStateTrigger, routeSlideStateTrigger } from '../../animations/route-animations';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  animations: [
+    routeFadeStateTrigger,
+    routeSlideStateTrigger
+  ]
 })
 export class ProfileComponent implements OnInit {
+  @HostBinding('@routeSlideState') routeAnimation = true;
+
   loading: boolean = false;
   noUserResult: boolean = false;
   user:any = {};

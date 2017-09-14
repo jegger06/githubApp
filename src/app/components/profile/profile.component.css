@@ -1,3 +1,7 @@
+:host {
+    display: block;
+}
+
 .repo-item {
     border-bottom: 1px dashed #ccc;
 }
