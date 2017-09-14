@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { GithubService } from '../../services/github.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,53 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  loading: boolean = false;
+  noUserResult: boolean = false;
+  user:any = {};
+  imageLoading: boolean = true;
+  repos: Array<Object> = [];
 
-  constructor() { }
+  constructor(private githubService: GithubService) { }
 
   ngOnInit() {
+    this.user = 0;
+  }
+
+  updateUser(username: any) {
+    this.loading = true;
+    this.imageLoading = true;
+    if(username.length == 0) {
+      setTimeout(() => {
+        this.user = 0;
+        this.noUserResult = false;
+        this.loading = false;
+      }, 400);
+    } else {
+
+      this.githubService.updateUser(username);
+      this.githubService.getUser().subscribe(res => {
+        // console.log(res);
+          this.user = res;
+          this.noUserResult = false;
+          this.loading = false;
+      }, err => {
+        console.log(err.statusText);
+        this.user = false;
+        this.noUserResult = true;
+        this.loading = false;
+      });
+      
+      this.githubService.getRepos().subscribe(res => {
+        // console.log(res);
+        this.repos = res;
+      });
+
+    }
+
+  }
+
+  imageLoad() {
+    this.imageLoading = false;
   }
 
 }

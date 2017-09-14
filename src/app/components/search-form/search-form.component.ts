@@ -10,7 +10,7 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class SearchFormComponent implements OnInit {
   username: FormControl;
-  @Output() myEvent = new EventEmitter();
+  @Output() update = new EventEmitter();
 
   constructor(private githubService: GithubService) {
     this.username = new FormControl();
@@ -23,7 +23,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   updateUser(username) {
-    this.myEvent.emit(username);
+    this.update.emit(username);
   }
 
 }
